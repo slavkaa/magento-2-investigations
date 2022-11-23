@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="UnityGroup_Blog::styles/blog.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument name="title" xsi:type="string">Blog</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="content">
+            <block name="unitygroup.blog.blog"
+                class="Magento\Framework\View\Element\Template"
+                   template="UnityGroup_Blog::blog.phtml">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">UnityGroup\Blog\ViewModel\Blog</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
+

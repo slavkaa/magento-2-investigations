@@ -1,0 +1,18 @@
+{
+    "unitygroup_blog_cms_page": {
+        "column": {
+            "post_id": true,
+            "page_id": true,
+            "is_blog_post": true,
+            "author_full_name": true,
+            "published_at": true
+        },
+        "index": {
+            "UNITYGROUP_BLOG_CMS_PAGE_POST_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNITYGROUP_BLOG_CMS_PAGE_PAGE_ID_CMS_PAGE_PAGE_ID": true
+        }
+    }
+}

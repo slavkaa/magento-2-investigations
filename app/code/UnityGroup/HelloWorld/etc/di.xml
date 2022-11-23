@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="UnityGroup\HelloWorld\Service\V1\GetDataInterface" type="UnityGroup\HelloWorld\Service\V1\GetData" />
+    <type name="Magento\Framework\Notification\NotifierList"/>
+    <type name="UnityGroup\HelloWorld\Service\V1\GetData">
+        <plugin name="beforeGetData" type="UnityGroup\HelloWorld\Plugin\BeforeGetData" sortOrder="1" disabled="false"/>
+        <plugin name="aroundGetData" type="UnityGroup\HelloWorld\Plugin\AroundGetData" sortOrder="1" disabled="false"/>
+        <plugin name="afterGetData" type="UnityGroup\HelloWorld\Plugin\AfterGetData" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="hello-world" xsi:type="object">UnityGroup\HelloWorld\Console\Command\GetDataCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

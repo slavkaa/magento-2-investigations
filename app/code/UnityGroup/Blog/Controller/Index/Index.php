@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace UnityGroup\Blog\Controller\index;
+namespace UnityGroup\Blog\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;

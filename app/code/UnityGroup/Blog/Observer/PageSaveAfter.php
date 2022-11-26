@@ -58,7 +58,9 @@ class PageSaveAfter implements ObserverInterface
         /** @var PostInterface|Post $post */
         $post = $this->postRepository->getByPageId((int)$data[PostResource::FIELD_PAGE_ID]);
 
-        $post->setData(PostResource::FIELD_PAGE_ID, (int) $data[PostResource::FIELD_PAGE_ID]);
+        if ($post->isObjectNew()) {
+            $post->setData(PostResource::FIELD_PAGE_ID, (int) $data[PostResource::FIELD_PAGE_ID]);
+        }
         $post->setData(PostResource::FIELD_AUTHOR_FULL_NAME, $data[PostResource::FIELD_AUTHOR_FULL_NAME]);
         $post->setData(PostResource::FIELD_IS_BLOG_POST, (boolean) $data[PostResource::FIELD_IS_BLOG_POST]);
         $post->setData(

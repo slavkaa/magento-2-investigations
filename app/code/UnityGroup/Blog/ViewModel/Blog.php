@@ -6,6 +6,7 @@ namespace UnityGroup\Blog\ViewModel;
 use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use UnityGroup\Blog\Model\ResourceModel\PostResource;
 use UnityGroup\Blog\Service\PostRepository;
 
 class Blog implements ArgumentInterface
@@ -53,9 +54,9 @@ class Blog implements ArgumentInterface
                 "id" => $post->getId(),
                 "title" => $post->getTitle(),
                 "url" => $this->urlInterface->getUrl($post->getIdentifier()),
-                "author"  => "Jon Snow",
+                "author"  => $post->getData(PostResource::FIELD_AUTHOR_FULL_NAME),
                 "content" => $this->truncate(strip_tags($post->getContent()), 50),
-                "published_at" => $post->getCreationTime()
+                "published_at" => $post->getData(PostResource::FIELD_PUBLISHED_AT)
             ];
         }
 

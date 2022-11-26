@@ -8,7 +8,9 @@ use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
 use UnityGroup\Blog\Api\Data\PostInterface;
 use UnityGroup\Blog\Api\PostManagementInterface;
+use UnityGroup\Blog\Api\PostRepositoryInterface;
 use UnityGroup\Blog\Model\Post;
+use UnityGroup\Blog\Model\ResourceModel\PostResource;
 
 class PageSaveAfter implements ObserverInterface
 {
@@ -18,19 +20,27 @@ class PageSaveAfter implements ObserverInterface
     private PostManagementInterface $postManagement;
 
     /**
+     * @var PostRepositoryInterface
+     */
+    private PostRepositoryInterface $postRepository;
+
+    /**
      * @var LoggerInterface
      */
     private LoggerInterface $logger;
 
     /**
+     * @param PostRepositoryInterface $postRepository
      * @param PostManagementInterface $postManagement
      * @param LoggerInterface $logger
      */
     public function __construct(
+        PostRepositoryInterface $postRepository,
         PostManagementInterface $postManagement,
         LoggerInterface $logger
     )
     {
+        $this->postRepository = $postRepository;
         $this->postManagement = $postManagement;
         $this->logger = $logger;
     }
@@ -42,17 +52,19 @@ class PageSaveAfter implements ObserverInterface
      */
     public function execute(Observer $observer): void
     {
-        $this->logger->debug('execute');
-
         /** @var \Magento\Cms\Model\Page $data */
         $data = $observer->getEvent()->getData()['data_object']->getData();
 
         /** @var PostInterface|Post $post */
-        $post = $this->postManagement->getEmptyObject();
-        $post->setData('page_id', (int) $data['page_id']);
-        $post->setData('author_full_name', $data['author_full_name']);
-        $post->setData('is_blog_post', (boolean) $data['is_blog_post']);
-        $post->setData('published_at',  str_replace(['.000Z'], '', str_replace('T', ' ', $data['published_at'])));
+        $post = $this->postRepository->getByPageId((int)$data[PostResource::FIELD_PAGE_ID]);
+
+        $post->setData(PostResource::FIELD_PAGE_ID, (int) $data[PostResource::FIELD_PAGE_ID]);
+        $post->setData(PostResource::FIELD_AUTHOR_FULL_NAME, $data[PostResource::FIELD_AUTHOR_FULL_NAME]);
+        $post->setData(PostResource::FIELD_IS_BLOG_POST, (boolean) $data[PostResource::FIELD_IS_BLOG_POST]);
+        $post->setData(
+            PostResource::FIELD_PUBLISHED_AT,
+            str_replace(['.000Z'], '', str_replace('T', ' ', $data[PostResource::FIELD_PUBLISHED_AT]))
+        );
 
         $this->postManagement->save($post);
     }

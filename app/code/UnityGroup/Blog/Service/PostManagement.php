@@ -5,7 +5,7 @@ namespace UnityGroup\Blog\Service;
 
 use UnityGroup\Blog\Api\Data\PostInterface;
 use UnityGroup\Blog\Api\PostManagementInterface;
-use UnityGroup\Blog\Model\ResourceModel\Post as PostResource;
+use UnityGroup\Blog\Model\ResourceModel\PostResource as PostResource;
 use UnityGroup\Blog\Model\PostFactory;
 
 class PostManagement implements PostManagementInterface

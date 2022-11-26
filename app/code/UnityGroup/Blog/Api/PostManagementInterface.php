@@ -3,7 +3,7 @@
 namespace UnityGroup\Blog\Api;
 
 use UnityGroup\Blog\Api\Data\PostInterface;
-use UnityGroup\Blog\Model\ResourceModel\Post as PostResource;
+use UnityGroup\Blog\Model\ResourceModel\PostResource as PostResource;
 
 interface PostManagementInterface
 {

@@ -4,5 +4,7 @@
     <preference for="UnityGroup\Blog\Api\PostManagementInterface"
         type="UnityGroup\Blog\Service\PostManagement"/>
     <preference for="UnityGroup\Blog\Api\Data\PostInterface"
-        type="UnityGroup\Blog\Model\ResourceModel\Post"/>
+        type="UnityGroup\Blog\Model\ResourceModel\PostResource"/>
+    <preference for="UnityGroup\Blog\Api\PostRepositoryInterface"
+        type="UnityGroup\Blog\Service\PostRepository"/>
 </config>

@@ -5,7 +5,7 @@ namespace UnityGroup\Blog\Model\ResourceModel\Post;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use UnityGroup\Blog\Model\Post;
-use UnityGroup\Blog\Model\ResourceModel\Post as PostResource;
+use UnityGroup\Blog\Model\ResourceModel\PostResource as PostResource;
 
 class Collection extends AbstractCollection
 {

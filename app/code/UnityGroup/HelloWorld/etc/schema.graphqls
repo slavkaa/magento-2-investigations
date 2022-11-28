@@ -1,0 +1,14 @@
+type Query {
+    HelloWorld(
+        format: String @doc(description: "Date format")
+    ): Data
+@resolver(class:"UnityGroup\\HelloWorld\\Model\\Resolver\\Data")
+@doc(description:
+    "The hello_world query returns test info")
+@cache(cacheable: false)
+}
+type Data @doc(description: "HelloWorld defines the test info") {
+    data: String
+    extra_data: String
+    extraData: String
+}

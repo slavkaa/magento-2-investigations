@@ -17,13 +17,23 @@ class GetData implements GetDataInterface
     /**
      * @inheritDoc
      */
+    public function getDataForGraphQlCall(): array {
+        return [
+            'data' => $this->collectData(),
+            'extra_data' => 'ED 1',
+            'extraData' => 'ED 2'
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getRawData(): string {
         return $this->collectData();
     }
 
     /**
-     * @param string $format
-     * @return void
+     * @inheritDoc
      */
     public function setFormat(string $format): void {
         $this->format = $format;

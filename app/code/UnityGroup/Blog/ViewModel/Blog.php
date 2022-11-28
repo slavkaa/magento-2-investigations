@@ -55,7 +55,7 @@ class Blog implements ArgumentInterface
                 "title" => $post->getTitle(),
                 "url" => $this->urlInterface->getUrl($post->getIdentifier()),
                 "author"  => $post->getData(PostResource::FIELD_AUTHOR_FULL_NAME),
-                "content" => $this->truncate(strip_tags($post->getContent()), 50),
+                "content" => $this->truncatePostContent(strip_tags($post->getContent()), 50),
                 "published_at" => $post->getData(PostResource::FIELD_PUBLISHED_AT)
             ];
         }
@@ -68,7 +68,7 @@ class Blog implements ArgumentInterface
      * @param int $maxLetters
      * @return string
      */
-    private function truncate(string $text, int $maxLetters): string {
+    private function truncatePostContent(string $text, int $maxLetters): string {
         $array = explode(' ', $text);
         if (count($array) > $maxLetters && $maxLetters > 0) {
             $text = implode(' ', array_slice($array, 0, $maxLetters)) . '...';
